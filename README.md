@@ -1,4 +1,5 @@
 # Full Stack Web Developer Nanodegree
+Christopher Hansen - [github](https://github.com/chansenaz)
 
 ### About
 This repository contains my projects for Udacity's [Full Stack Web Developer Nanodegree](https://www.udacity.com/course/full-stack-web-developer-nanodegree--nd004)
