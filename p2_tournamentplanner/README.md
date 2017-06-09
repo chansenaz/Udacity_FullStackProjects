@@ -1,4 +1,10 @@
-rdb-fullstack
-=============
+# Movie Trailer Website
+Christopher Hansen - [github](https://github.com/chansenaz)
 
-Common code for the Relational Databases and Full Stack Fundamentals courses
+### About
+This is the second project for Udacity's [Full Stack Web Developer Nanodegree](https://www.udacity.com/course/full-stack-web-developer-nanodegree--nd004)
+
+### Features
+
+
+### How to Use
