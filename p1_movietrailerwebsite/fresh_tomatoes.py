@@ -61,23 +61,20 @@ def open_movies_page(movies):
     
     
 def get_moviedata(filename):
-    movies = []
+    movielist = []
     
     with open(filename, 'r') as csvfile:
         moviereader = csv.DictReader(csvfile)
         for movie in moviereader:
-            movies.append(media.Movie(title = movie['title'],
+            movielist.append(media.Movie(title = movie['title'],
                                 year = movie['year'],
                                 poster_image_url = movie['poster_image_url'],
                                 trailer_youtube_url = movie['trailer_youtube_url']))
-    return movies
+    return movielist
 
 
 def main():
-    print(movie_tile_content)
-
     movies = get_moviedata('data/moviedata.csv')
-
     open_movies_page(movies)
 
 
