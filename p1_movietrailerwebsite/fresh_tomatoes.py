@@ -2,6 +2,7 @@ import webbrowser
 import os
 import re
 import csv
+import media
 
 
 def get_template(to_get):
@@ -10,7 +11,6 @@ def get_template(to_get):
     data = htmlfile.read()
     htmlfile.close()
     return data
-
 
 
 # Styles and scripting for the page
@@ -58,15 +58,27 @@ def open_movies_page(movies):
     # open the output file in the browser (in a new tab, if possible)
     url = os.path.abspath(output_file.name)
     webbrowser.open('file://' + url, new=2)
-
+    
+    
+def get_moviedata(filename):
+    movies = []
+    
+    with open(filename, 'r') as csvfile:
+        moviereader = csv.DictReader(csvfile)
+        for movie in moviereader:
+            movies.append(media.Movie(title = movie['title'],
+                                year = movie['year'],
+                                poster_image_url = movie['poster_image_url'],
+                                trailer_youtube_url = movie['trailer_youtube_url']))
+    return movies
 
 
 def main():
     print(movie_tile_content)
 
-    #movies = [hot_rod, john_wick, stranger_than_fiction, saving_private_ryan, toy_story, hot_fuzz, the_matrix, mad_max, anchorman, avatar]
+    movies = get_moviedata('data/moviedata.csv')
 
-    #fresh_tomatoes.open_movies_page(movies)
+    open_movies_page(movies)
 
 
 if __name__ == '__main__':
