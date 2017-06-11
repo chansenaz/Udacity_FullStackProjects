@@ -41,7 +41,7 @@ def deleteMatches():
 def deletePlayers():
     """Remove all the player records from the database."""
     
-    query = "DELETE FROM players;"
+    query = "DELETE FROM players CASCADE;"
     runQuery(query, False)
 
 
@@ -84,6 +84,35 @@ def playerStandings():
         wins: the number of matches the player has won
         matches: the number of matches the player has played
     """
+    result = []
+    db = connect()
+    c = db.cursor()
+    
+    """get all the player ids"""
+    c.execute("SELECT playerid FROM players;")
+    query_result = c.fetchall()
+    
+    """for every player id, create a tuple (id, name, wins, matches) and append to result"""
+    for entry in query_result:
+        tuple_id = entry[0]
+        
+        c.execute("SELECT name FROM players WHERE playerid = %s;" % tuple_id)
+        query_result = c.fetchall()
+        tuple_name = query_result[0][0]
+        
+        c.execute("SELECT COUNT(*) FROM matches WHERE winner = %s OR loser = %s;" % (tuple_id, tuple_id))
+        query_result = c.fetchall()
+        tuple_matches = int(query_result[0][0])
+        
+        c.execute("SELECT COUNT(*) FROM matches WHERE winner = %s;" % tuple_id)
+        query_result = c.fetchall()
+        tuple_wins = int(query_result[0][0])
+        
+        tuple = (tuple_id, tuple_name, tuple_wins, tuple_matches)
+        result.append(tuple)
+    
+    db.close()
+    return result
 
 
 def reportMatch(winner, loser):
@@ -93,7 +122,12 @@ def reportMatch(winner, loser):
       winner:  the id number of the player who won
       loser:  the id number of the player who lost
     """
- 
+    db = connect()
+    c = db.cursor()
+    c.execute("INSERT INTO matches (winner, loser) VALUES (%s, %s);" % (winner, loser))
+    db.commit()
+    db.close()
+
  
 def swissPairings():
     """Returns a list of pairs of players for the next round of a match.
@@ -110,5 +144,5 @@ def swissPairings():
         id2: the second player's unique id
         name2: the second player's name
     """
-
+    
 
