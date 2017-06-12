@@ -1,4 +1,4 @@
-p1_movietrailerwebsite/*.pyc
+**/*.pyc
 p1_movietrailerwebsite/__pychache__
 p2_tournamentplanner/vagrant/__pycache__
 p2_tournamentplanner/vagrant/*.pyc

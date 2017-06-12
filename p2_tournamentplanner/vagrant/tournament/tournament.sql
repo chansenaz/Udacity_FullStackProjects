@@ -19,27 +19,26 @@
 
 --once you are in the tournament database, you can make tables:
 
-CREATE TABLE matches  ( matchid serial primary key,
-						player1 integer not null,
-						player2 integer not null,
-						winner integer not null
-						);
-						
-						
+
+drop table players CASCADE;
+drop table matches;
+
+
 CREATE TABLE players  ( playerid serial primary key,
 						name varchar(100) not null );
 						
 						
-INSERT INTO players (playerid, name) VALUES (DEFAULT, 'Lisa');
-INSERT INTO players (playerid, name) VALUES (DEFAULT, 'Andrew');
-INSERT INTO players (playerid, name) VALUES (DEFAULT, 'Simon');
 						
-						
---CREATE TABLE posts  ( content varchar (500) not null,
-  --                      time timestamp default current_timestamp,
-	--					id serial primary key);
+CREATE TABLE matches  ( matchid serial primary key,
+						winner integer references players(playerid),
+						loser integer references players(playerid)
+						);
+					
 
-						
-						
+
+
+		
+
+	
 						
 						

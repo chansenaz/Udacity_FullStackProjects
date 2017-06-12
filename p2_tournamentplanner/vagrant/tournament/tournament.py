@@ -5,6 +5,7 @@
 
 import psycopg2
 import bleach
+from operator import itemgetter
 
 
 def connect():
@@ -112,6 +113,7 @@ def playerStandings():
         result.append(tuple)
     
     db.close()
+    result.sort(key=itemgetter(2))
     return result
 
 
@@ -144,5 +146,16 @@ def swissPairings():
         id2: the second player's unique id
         name2: the second player's name
     """
+    player_list = playerStandings()
+    pair_list = []
+    
+    for i in range(0,len(player_list), 2):
+        if i < (len(player_list) - 1):
+            new_pair = (player_list[i][0], player_list[i][1], player_list[i+1][0], player_list[i+1][1])
+            pair_list.append(new_pair)
+
+    return pair_list
+
+
     
 
