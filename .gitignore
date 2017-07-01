@@ -5,3 +5,5 @@ p2_tournamentplanner/vagrant/*.pyc
 p2_tournamentplanner/vagrant/.vagrant
 p2_tournamentplanner/vagrant/catalog
 p2_tournamentplanner/vagrant/forum
+p3_catalog/vagrant/*.pyc
+p3_catalog/vagrant/.vagrant
