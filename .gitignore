@@ -1,9 +1,4 @@
 **/*.pyc
-p1_movietrailerwebsite/__pychache__
-p2_tournamentplanner/vagrant/__pycache__
-p2_tournamentplanner/vagrant/*.pyc
+**/__pycache__
 p2_tournamentplanner/vagrant/.vagrant
-p2_tournamentplanner/vagrant/catalog
-p2_tournamentplanner/vagrant/forum
-p3/vagrant/*.pyc
 p3/vagrant/.vagrant
