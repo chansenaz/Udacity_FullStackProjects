@@ -1,4 +1,6 @@
 **/*.pyc
 **/__pycache__
+**/*.db
 p2_tournamentplanner/vagrant/.vagrant
 p3/vagrant/.vagrant
+p3/vagrant/restaurant_menu/webserver.py
