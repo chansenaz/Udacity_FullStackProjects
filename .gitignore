@@ -3,4 +3,4 @@
 **/*.db
 p2_tournamentplanner/vagrant/.vagrant
 p3/vagrant/.vagrant
-p3/vagrant/restaurant_menu/webserver.py
+p3/vagrant/restaurant_menu/
