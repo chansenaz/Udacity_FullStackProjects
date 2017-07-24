@@ -1,4 +1,4 @@
-# Swiss-style Tournament Organizer
+# Forum
 Christopher Hansen - [github](https://github.com/chansenaz)
 
 ### About
@@ -15,10 +15,7 @@ In the 'vagrant' directory, using git/bash do 'vagrant up'
 
 After vagrant has started up, do 'vagrant ssh'
 
-Once connected, 'cd /vagrant/tournament'
-'createdb tournament'
-'psql tournament'
-'\i tournament.sql'
-'\q' to leave psql mode
-
-To run the 10 test cases, 'python tournament_test.py'
+Once connected, 'cd /vagrant/forum'
+'python forum.py'
+Open http://localhost:8000/ in your browser
+You can now post messages and view the messages in the forum database!

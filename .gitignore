@@ -2,5 +2,4 @@
 **/__pycache__
 **/*.db
 **/.vagrant
-p3_itemcatalog/vagrant/restaurant_menu/
-p3_itemcatalog/vagrant/puppies
+p2_logsanalysis/vagrant/logsanalysis/newsdata.sql
