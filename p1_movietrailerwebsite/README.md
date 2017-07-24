@@ -10,3 +10,4 @@ This webpage displays a tileset of some of my favorite movies. Click on a movie 
 ### How to Use
 Open fresh_tomatoes.html in your favorite browser!
 If you would like to add more movies to Fresh Tomatoes, open data/moviedata.csv and add a new row for each movie, save & close and then run fresh_tomatoes.py to generate a new fresh_tomatoes.html.
+To generate a new fresh_tomatoes.html, run the python file fresh_tomatoes.py!

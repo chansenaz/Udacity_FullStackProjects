@@ -1,8 +1,6 @@
 **/*.pyc
 **/__pycache__
 **/*.db
-p2_tournamentplanner/vagrant/.vagrant
-p3/vagrant/.vagrant
-p3/vagrant/restaurant_menu/
-p3/vagrant/restaurant_menu2/
-p3/vagrant/restaurant_menu3/
+**/.vagrant
+p3_itemcatalog/vagrant/restaurant_menu/
+p3_itemcatalog/vagrant/puppies
