@@ -28,4 +28,15 @@ This program answers three questions about the news website's traffic:
 4. After vagrant has started up, do 'vagrant ssh'
 5. Once connected, 'cd /vagrant/logsanalysis'
 6. 'psql -d news -f newsdata.sql' to import the data into database 'news'
-7. 'python logsanalysis.py' to run the program
+7. 'psql news' to go into psql mode in the news database.
+8. Make view 1:
+	create view viewcount_view as
+    select title, author, count(*) as num_views from articles, log
+    where log.path = concat('/article/', articles.slug)
+	group by articles.title, articles.author order by num_views desc;
+9. Make view 2:
+	create view errors_view as select date(time),
+	round(100.0 * sum(case log.status when '200 OK' then 0 else 1 end) /
+	count(log.status), 1) as percent_error from log group by date(time)
+	order by percent_error desc;
+10. 'python logsanalysis.py' to run the program
