@@ -1,4 +1,21 @@
-.container {
-    width: 100%;
-    white-space: nowrap;
+/*
+Color scheme:
+
+#352D39 - onyx (dark purple)
+#6D435A - deep tuscan red (red purple)
+#384D48 - arsenic (dark green)
+#ACAD94 - silver
+#D8D4D5 - very light gray
+*/
+
+body {
+    background: #352D39 !important;
+}
+
+h1 {
+    color: #6D435A;
+}
+
+a {
+    color: #ACAD94;
 }
