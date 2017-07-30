@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, jsonify, url_for, flash
-from sqlalchemy import create_engine, desc
+from sqlalchemy import create_engine, desc, asc
 from sqlalchemy.orm import sessionmaker
-from database_setup import Base, User, Item
+from database_setup import Base, User, Item, Category
 from flask import session as login_session
 import random
 import string
@@ -40,11 +40,9 @@ def showLogin():
 @app.route('/')
 @app.route('/home/')
 def showitems():
-    items = session.query(Item).order_by(desc(Item.id))
-    # if 'username' not in login_session:
-    return render_template('publicitems.html', items=items)
-    # else:
-    # return render_template('items.html', items=items)
+    items = session.query(Item).order_by(desc(Item.id)).limit(12).all()
+    categories = session.query(Category).order_by(asc(Category.id))
+    return render_template('home.html', items=items, categories=categories)
 
 
 if __name__ == '__main__':

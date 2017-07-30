@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from database_setup import Base, User, Item, CATEGORY_LIST
+from database_setup import Base, User, Item, Category
 
 engine = create_engine('sqlite:///itemcatalog.db')
 # Bind the engine to the metadata of the Base class so that the
@@ -19,24 +19,81 @@ DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
 # Create dummy user
-User1 = User(name="Fernando Hippokrates", email="fhippokrates@notreal.com",
+user_to_add = User(name="Fernando Hippokrates", email="fhippokrates@notreal.com",
              picture='https://upload.wikimedia.org/wikipedia/commons/0/0d/Kangaroo_and_joey03.jpg')
-session.add(User1)
+session.add(user_to_add)
+session.commit()
+
+# Create categories
+CATEGORY_LIST = ['Beverages', 'Bread/Bakery', 'Canned/Jarred Goods', 'Dairy', 'Dry/Baking Goods', 'Frozen Foods',
+                 'Meat', 'Produce', 'Cleaners', 'Paper Goods', 'Personal Care', 'Other']
+
+cat_to_add = Category(name=CATEGORY_LIST[0])
+session.add(cat_to_add)
+session.commit()
+
+cat_to_add = Category(name=CATEGORY_LIST[1])
+session.add(cat_to_add)
+session.commit()
+
+cat_to_add = Category(name=CATEGORY_LIST[2])
+session.add(cat_to_add)
+session.commit()
+
+cat_to_add = Category(name=CATEGORY_LIST[3])
+session.add(cat_to_add)
+session.commit()
+
+cat_to_add = Category(name=CATEGORY_LIST[4])
+session.add(cat_to_add)
+session.commit()
+
+cat_to_add = Category(name=CATEGORY_LIST[5])
+session.add(cat_to_add)
+session.commit()
+
+cat_to_add = Category(name=CATEGORY_LIST[6])
+session.add(cat_to_add)
+session.commit()
+
+cat_to_add = Category(name=CATEGORY_LIST[7])
+session.add(cat_to_add)
+session.commit()
+
+cat_to_add = Category(name=CATEGORY_LIST[8])
+session.add(cat_to_add)
+session.commit()
+
+cat_to_add = Category(name=CATEGORY_LIST[9])
+session.add(cat_to_add)
+session.commit()
+
+cat_to_add = Category(name=CATEGORY_LIST[10])
+session.add(cat_to_add)
+session.commit()
+
+cat_to_add = Category(name=CATEGORY_LIST[11])
+session.add(cat_to_add)
 session.commit()
 
 # Create Beverage Items
-Item1 = Item(category=CATEGORY_LIST[0], name='Cranberry Juice', user_id=1)
-session.add(Item1)
+item_to_add = Item(category_id=1, name='Cranberry Juice', user_id=1,
+             description="100% juice made with the crisp, clean taste of real cranberries. No added sugar, " +
+                         "a daily dose of vitamin C, and one cup of fruit, so it tastes good and " +
+                         "it's good for you, too!")
+session.add(item_to_add)
 session.commit()
 
-Item2 = Item(category=CATEGORY_LIST[0], name='Coca Cola', user_id=1)
-session.add(Item2)
+item_to_add = Item(category_id=1, name='Coca Cola', user_id=1, description="Good ol' classic Coke!")
+session.add(item_to_add)
 session.commit()
 
-Item3 = Item(category=CATEGORY_LIST[0], name='Lemonade', user_id=1)
-session.add(Item3)
+item_to_add = Item(category_id=1, name='Coffee', user_id=1,
+             description="Occasional indulgence for some, a necessity for others.")
+session.add(item_to_add)
 session.commit()
 
-Item4 = Item(category=CATEGORY_LIST[0], name='Iced Tea', user_id=1)
-session.add(Item4)
+item_to_add = Item(category_id=1, name='Iced Tea', user_id=1,
+                   description="Tasty and refreshing! Black tea made from real tea leaves.")
+session.add(item_to_add)
 session.commit()
