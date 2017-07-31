@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from flask import Flask, render_template, request, \
-    redirect, url_for, flash, jsonify
+#from flask import Flask, render_template, request, redirect, url_for, flash, jsonify, make_response
+from flask import *
 from sqlalchemy import create_engine, desc, asc
 from sqlalchemy.orm import sessionmaker
 from database_setup import Base, User, Item, Category, CATEGORY_LIST
@@ -12,7 +12,6 @@ from oauth2client.client import flow_from_clientsecrets
 from oauth2client.client import FlowExchangeError
 import httplib2
 import json
-from flask import make_response
 import requests
 
 app = Flask(__name__)
@@ -321,6 +320,7 @@ def show_item(item_id):
 def new_item():
     if 'username' not in login_session:
         return redirect('/login')
+
     if request.method == 'POST':
         user_item = Item(category_id=CATEGORY_LIST.index(
             request.form['category']) + 1, name=request.form['name'],
@@ -337,9 +337,10 @@ def new_item():
 # Edit an item
 @app.route('/item/<int:item_id>/edit/', methods=['GET', 'POST'])
 def edit_item(item_id):
-    edited_item = session.query(Item).filter_by(id=item_id).one()
     if 'username' not in login_session:
         return redirect('/login')
+
+    edited_item = session.query(Item).filter_by(id=item_id).one()
     if edited_item.user_id != login_session['user_id']:
         return "<script>function myFunction() {alert('You are not " \
                "authorized to edit this item. " \
@@ -367,6 +368,7 @@ def edit_item(item_id):
 def delete_item(item_id):
     if 'username' not in login_session:
         return redirect('/login')
+    
     item_to_delete = session.query(Item).filter_by(id=item_id).one()
     if login_session['user_id'] != item_to_delete.user_id:
         return "<script>function myFunction() {alert('You are not authorized" \
