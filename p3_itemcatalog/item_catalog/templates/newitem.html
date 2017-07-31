@@ -1,11 +1,7 @@
 {% extends "main.html" %} {% block content %}
 
-<div class="row divider green">
-    <div class="col-md-12"></div>
-</div>
-
-<div class="row banner menu">
-    <div class="col-md-11 col-md-offset-1 padding-none">
+<div class="row">
+    <div class="col-md-12 col-md-offset-1">
         <h1>New Item</h1>
     </div>
 </div>
@@ -14,11 +10,11 @@
     <div class="col-md-6 col-md-offset-1 padding-top">
         <form action="#" method="post" id="category">
             <div class="form-group">
-                <label form="name">Name:</label>
+                <label>Name:</label>
                 <input type="text" maxlength="50" class="form-control" name="name" placeholder="Name of the item">
 
                 <br>
-                <label for="category">Category:</label>
+                <label>Category:</label>
                 <br>
                 <select name="category">
                     {% for category in categories %}
@@ -28,7 +24,7 @@
                 <br>
 
                 <br>
-                <label form="description">Description:</label>
+                <label>Description:</label>
                 <textarea class="form-control" maxlength="250" rows="3" name="description"
                           placeholder="Description of the item"></textarea>
 

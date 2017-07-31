@@ -288,10 +288,13 @@ def show_category(category_id):
 @app.route('/item/<int:item_id>')
 def show_item(item_id):
     item = session.query(Item).filter_by(id=item_id)[0]
-    return render_template('item.html', item=item)
+    permission = False
+    if login_session['user_id'] == item.user_id:
+        permission = True
+    return render_template('item.html', item=item, permission=permission)
 
 
-# Create a new restaurant
+# Create a new item
 @app.route('/item/new/', methods=['GET', 'POST'])
 def new_item():
     if 'username' not in login_session:
@@ -305,6 +308,29 @@ def new_item():
         return redirect(url_for('show_recent_items'))
     else:
         return render_template('newitem.html', categories=CATEGORY_LIST)
+
+
+# Edit an item
+@app.route('/item/<int:item_id>/edit/', methods=['GET', 'POST'])
+def edit_item(item_id):
+    edited_item = session.query(Item).filter_by(id=item_id).one()
+    if 'username' not in login_session:
+        return redirect('/login')
+    if edited_item.user_id != login_session['user_id']:
+        return "<script>function myFunction() {alert('You are not authorized to edit this item. You may only edit items that you have created.');}</script><body onload='myFunction()''>"
+    if request.method == 'POST':
+        if request.form['name']:
+            edited_item.name = request.form['name']
+        if request.form['category']:
+            edited_item.category_id = CATEGORY_LIST.index(request.form['category']) + 1
+        if request.form['description']:
+            edited_item.description = request.form['description']
+        session.add(edited_item)
+        session.commit()
+        flash('Item %s Successfully Edited' % edited_item.name)
+        return redirect(url_for('show_recent_items'))
+    else:
+        return render_template('edititem.html', item=edited_item, categories=CATEGORY_LIST)
 
 
 # Show most recently added items
