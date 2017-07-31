@@ -39,3 +39,17 @@ Finally, JSON endpoints are available for viewing specific items, all of the ite
 5. Open a web browser and open URL:
 
 		localhost:8000
+		
+6. To view JSON Endpoints use the following URLs:
+
+* All items:
+
+		localhost:8000/items/JSON
+        
+* One item:
+
+		localhost:8000/item/<item_id#>/JSON
+
+* All items from one category:
+
+		localhost:8000/category/<category_id#>/JSON
