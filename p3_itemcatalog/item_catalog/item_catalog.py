@@ -1,7 +1,9 @@
+# -*- coding: utf-8 -*-
+
 from flask import Flask, render_template, request, redirect, jsonify, url_for, flash
 from sqlalchemy import create_engine, desc, asc
 from sqlalchemy.orm import sessionmaker
-from database_setup import Base, User, Item, Category
+from database_setup import Base, User, Item, Category, CATEGORY_LIST
 from flask import session as login_session
 import random
 import string
@@ -60,7 +62,6 @@ def fbconnect():
     # for the server access token then we split it on colons to pull out the actual token value
     # and replace the remaining quotes with nothing so that it can be used directly in the graph
     # api calls
-
     token = result.split(',')[0].split(':')[1].replace('"', '')
 
     url = 'https://graph.facebook.com/v2.8/me?access_token=%s&fields=name,id,email' % token
@@ -288,6 +289,22 @@ def show_category(category_id):
 def show_item(item_id):
     item = session.query(Item).filter_by(id=item_id)[0]
     return render_template('item.html', item=item)
+
+
+# Create a new restaurant
+@app.route('/item/new/', methods=['GET', 'POST'])
+def new_item():
+    if 'username' not in login_session:
+        return redirect('/login')
+    if request.method == 'POST':
+        user_item = Item(category_id=CATEGORY_LIST.index(request.form['category']) + 1, name=request.form['name'],
+                         user_id=login_session['user_id'], description=request.form['description'])
+        session.add(user_item)
+        flash('New Item %s Successfully Created' % user_item.name)
+        session.commit()
+        return redirect(url_for('show_recent_items'))
+    else:
+        return render_template('newitem.html', categories=CATEGORY_LIST)
 
 
 # Show most recently added items

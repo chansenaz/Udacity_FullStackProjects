@@ -19,8 +19,17 @@ a {
     color: #F46036;
 }
 
+i {
+    color: #A1A6B4;
+}
+
 p {
-    color: black;
+    color: #402039;
+    font-size: 12pt;
+}
+
+label {
+    color: #402039;
 }
 
 .container {

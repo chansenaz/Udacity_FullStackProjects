@@ -11,11 +11,17 @@
 </div>
 
 <div class="col-md-8 col-md-border">
+    {%if 'username' in session %}
+    <a href="/item/new/">
+        <h4>Add New Item</h4>
+    </a>
+    {% endif %}
+
     <h1>Recent Items</h1>
 
     {% for item in items %}
     <a href="/item/{{item.id}}">
-        <h3>{{item.name}} <i>({{item.category.name}})</i></h3>
+        <h4>{{item.name}} <i>({{item.category.name}})</i></h4>
     </a>
     {% endfor %}
 </div>

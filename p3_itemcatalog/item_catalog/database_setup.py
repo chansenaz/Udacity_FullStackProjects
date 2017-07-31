@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from sqlalchemy import Column, ForeignKey, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
@@ -5,12 +7,15 @@ from sqlalchemy import create_engine
 
 Base = declarative_base()
 
+# Create categories
+CATEGORY_LIST = ['Beverages', 'Bread/Bakery', 'Canned/Jarred Goods', 'Dairy', 'Dry/Baking Goods', 'Frozen Foods',
+                 'Meat', 'Produce', 'Cleaners', 'Paper Goods', 'Personal Care', 'Other']
 
 class User(Base):
     __tablename__ = 'users'
 
     id = Column(Integer, primary_key=True)
-    name = Column(String(250), nullable=False)
+    name = Column(String(50), nullable=False)
     email = Column(String(250), nullable=False)
     picture = Column(String(250))
 
@@ -19,7 +24,7 @@ class Category(Base):
     __tablename__ = 'categories'
 
     id = Column(Integer, primary_key=True)
-    name = Column(String(250), nullable=False)
+    name = Column(String(50), nullable=False)
 
     @property
     def serialize(self):
@@ -36,7 +41,7 @@ class Item(Base):
     id = Column(Integer, primary_key=True)
     category_id = Column(Integer, ForeignKey('categories.id'))
     category = relationship(Category)
-    name = Column(String(250), nullable=False)
+    name = Column(String(50), nullable=False)
     description = Column(String(250))
     user_id = Column(Integer, ForeignKey('users.id'))
     user = relationship(User)
