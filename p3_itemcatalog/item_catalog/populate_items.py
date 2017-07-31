@@ -20,32 +20,33 @@ DBSession = sessionmaker(bind=engine)
 # session.rollback()
 session = DBSession()
 
-# Create dummy user
+# Create dummy users
 user_to_add = User(name="Fernando Hippokrates", email="fhippokrates@notreal.com",
                    picture='https://upload.wikimedia.org/wikipedia/commons/0/0d/Kangaroo_and_joey03.jpg')
 session.add(user_to_add)
 session.commit()
 
-user_to_add = User(name="Rishi Trevelyan", email="",
-                   picture='')
+user_to_add = User(name="Rishi Trevelyan", email="rtrvelyan@notreal.com",
+                   picture='https://s-media-cache-ak0.pinimg.com/736x/8a/b8/53/8ab853a3ce417f5c872e605abdaae6a9--panda-bears-god.jpg')
 session.add(user_to_add)
 session.commit()
 
-user_to_add = User(name="Hubert Marcus", email="",
-                   picture='')
+user_to_add = User(name="Hubert Marcus", email="hmarcus@notreal.com",
+                   picture='http://www.kidzone.ws/images-changed/penguins/adelie-penguin.jpg')
 session.add(user_to_add)
 session.commit()
 
-user_to_add = User(name="Silvanus Vulcanus", email="",
-                   picture='')
+user_to_add = User(name="Silvanus Vulcanus", email="svulcanus@notreal.com",
+                   picture='https://upload.wikimedia.org/wikipedia/commons/a/ac/Cheetah_portrait_Whipsnade_Zoo.jpg')
 session.add(user_to_add)
 session.commit()
 
-user_to_add = User(name="Staffan Raginhard", email="",
-                   picture='')
+user_to_add = User(name="Staffan Raginhard", email="sraginhard@notreal.com",
+                   picture='https://c402277.ssl.cf1.rackcdn.com/photos/6518/images/story_full_width/iStock_000011145477Large_mini_%281%29.jpg?1394632882')
 session.add(user_to_add)
 session.commit()
 
+# Add categories
 cat_to_add = Category(name=CATEGORY_LIST[0])
 session.add(cat_to_add)
 session.commit()

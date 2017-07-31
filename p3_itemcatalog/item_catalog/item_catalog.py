@@ -203,7 +203,7 @@ def gconnect():
     output += '<img src="'
     output += login_session['picture']
     output += ' " style = "width: 300px; height: 300px;border-radius: 150px;-webkit-border-radius: 150px;-moz-border-radius: 150px;"> '
-    flash("you are now logged in as %s" % login_session['username'])
+    flash("You are now logged in as %s" % login_session['username'])
     print "done!"
     return output
 
@@ -287,11 +287,11 @@ def show_category(category_id):
 # Show information for a single item
 @app.route('/item/<int:item_id>')
 def show_item(item_id):
-    item = session.query(Item).filter_by(id=item_id)[0]
+    item_to_show = session.query(Item).filter_by(id=item_id)[0]
     permission = False
-    if login_session['user_id'] == item.user_id:
+    if 'username' in login_session and login_session['user_id'] == item_to_show.user_id:
         permission = True
-    return render_template('item.html', item=item, permission=permission)
+    return render_template('item.html', item=item_to_show, permission=permission, category=CATEGORY_LIST[item_to_show.category_id - 1])
 
 
 # Create a new item
@@ -333,12 +333,29 @@ def edit_item(item_id):
         return render_template('edititem.html', item=edited_item, categories=CATEGORY_LIST)
 
 
-# Show most recently added items
+# Delete an item
+@app.route('/item/<int:item_id>/delete/', methods=['GET', 'POST'])
+def delete_item(item_id):
+    if 'username' not in login_session:
+        return redirect('/login')
+    item_to_delete = session.query(Item).filter_by(id=item_id).one()
+    if login_session['user_id'] != item_to_delete.user_id:
+        return "<script>function myFunction() {alert('You are not authorized to delete menu items to this restaurant. Please create your own restaurant in order to delete items.');}</script><body onload='myFunction()''>"
+    if request.method == 'POST':
+        session.delete(item_to_delete)
+        session.commit()
+        flash('Item Successfully Deleted')
+        return redirect(url_for('show_recent_items'))
+    else:
+        return render_template('deleteitem.html', item=item_to_delete)
+
+
+# Show most recently added items on the home page
 @app.route('/')
 @app.route('/home/')
 def show_recent_items():
     categories = session.query(Category).order_by(asc(Category.id)).all()
-    items = session.query(Item).order_by(desc(Item.id)).limit(12).all()
+    items = session.query(Item).order_by(desc(Item.id)).limit(19).all()
     return render_template('home.html', items=items, categories=categories)
 
 
