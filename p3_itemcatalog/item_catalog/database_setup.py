@@ -8,8 +8,10 @@ from sqlalchemy import create_engine
 Base = declarative_base()
 
 # Create categories
-CATEGORY_LIST = ['Beverages', 'Bread/Bakery', 'Canned/Jarred Goods', 'Dairy', 'Dry/Baking Goods', 'Frozen Foods',
-                 'Meat', 'Produce', 'Cleaners', 'Paper Goods', 'Personal Care', 'Other']
+CATEGORY_LIST = ['Beverages', 'Bread/Bakery', 'Canned/Jarred Goods', 'Dairy',
+                 'Dry/Baking Goods', 'Frozen Foods', 'Meat', 'Produce',
+                 'Cleaners', 'Paper Goods', 'Personal Care', 'Other']
+
 
 class User(Base):
     __tablename__ = 'users'
@@ -28,10 +30,10 @@ class Category(Base):
 
     @property
     def serialize(self):
-        """Return object data in easily serializeable format"""
+        # Return object data in easily serializeable format
         return {
             'id': self.id,
-            'name': self.name,
+            'name': self.name
         }
 
 
@@ -48,11 +50,12 @@ class Item(Base):
 
     @property
     def serialize(self):
-        """Return object data in easily serializeable format"""
+        # Return object data in easily serializeable format
         return {
             'id': self.id,
             'name': self.name,
-            'category': self.category,
+            'category': self.category.name,
+            'category_id': self.category_id,
             'description': self.description
         }
 

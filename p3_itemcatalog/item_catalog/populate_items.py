@@ -21,28 +21,36 @@ DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
 # Create dummy users
-user_to_add = User(name="Fernando Hippokrates", email="fhippokrates@notreal.com",
-                   picture='https://upload.wikimedia.org/wikipedia/commons/0/0d/Kangaroo_and_joey03.jpg')
+user_to_add = User(name="Fernando Hippokrates",
+                   email="fhippokrates@notreal.com",
+                   picture='https://upload.wikimedia.org/'
+                           'wikipedia/commons/0/0d/Kangaroo_and_joey03.jpg')
 session.add(user_to_add)
 session.commit()
 
 user_to_add = User(name="Rishi Trevelyan", email="rtrvelyan@notreal.com",
-                   picture='https://s-media-cache-ak0.pinimg.com/736x/8a/b8/53/8ab853a3ce417f5c872e605abdaae6a9--panda-bears-god.jpg')
+                   picture='https://s-media-cache-ak0.pinimg.com/736x/8a/'
+                           'b8/53/8ab853a3ce417f5c872e605abdaae6a9--'
+                           'panda-bears-god.jpg')
 session.add(user_to_add)
 session.commit()
 
 user_to_add = User(name="Hubert Marcus", email="hmarcus@notreal.com",
-                   picture='http://www.kidzone.ws/images-changed/penguins/adelie-penguin.jpg')
+                   picture='http://www.kidzone.ws/images-changed/'
+                           'penguins/adelie-penguin.jpg')
 session.add(user_to_add)
 session.commit()
 
 user_to_add = User(name="Silvanus Vulcanus", email="svulcanus@notreal.com",
-                   picture='https://upload.wikimedia.org/wikipedia/commons/a/ac/Cheetah_portrait_Whipsnade_Zoo.jpg')
+                   picture='https://upload.wikimedia.org/wikipedia/commons/'
+                           'a/ac/Cheetah_portrait_Whipsnade_Zoo.jpg')
 session.add(user_to_add)
 session.commit()
 
 user_to_add = User(name="Staffan Raginhard", email="sraginhard@notreal.com",
-                   picture='https://c402277.ssl.cf1.rackcdn.com/photos/6518/images/story_full_width/iStock_000011145477Large_mini_%281%29.jpg?1394632882')
+                   picture='https://c402277.ssl.cf1.rackcdn.com/photos/6518/'
+                           'images/story_full_width/iStock_000011145477Large'
+                           '_mini_%281%29.jpg?1394632882')
 session.add(user_to_add)
 session.commit()
 
@@ -97,23 +105,29 @@ session.commit()
 
 # Create Beverage Items
 item_to_add = Item(category_id=1, name='Cranberry Juice', user_id=1,
-                   description="100% juice made with the crisp, clean taste of real cranberries. No added sugar, " +
-                               "a daily dose of vitamin C, and one cup of fruit, so it tastes good and " +
+                   description="100% juice made with the crisp, "
+                               "clean taste of real cranberries. "
+                               "No added sugar, " +
+                               "a daily dose of vitamin C, and "
+                               "one cup of fruit, so it tastes good and " +
                                "it's good for you, too!")
 session.add(item_to_add)
 session.commit()
 
-item_to_add = Item(category_id=1, name='Coca Cola', user_id=1, description="Good ol' classic Coke!")
+item_to_add = Item(category_id=1, name='Coca Cola', user_id=1,
+                   description="Good ol' classic Coke!")
 session.add(item_to_add)
 session.commit()
 
 item_to_add = Item(category_id=1, name='Coffee', user_id=1,
-                   description="Occasional indulgence for some, a necessity for others.")
+                   description="Occasional indulgence for some, "
+                               "a necessity for others.")
 session.add(item_to_add)
 session.commit()
 
 item_to_add = Item(category_id=1, name='Iced Tea', user_id=1,
-                   description="Tasty and refreshing! Black tea made from real tea leaves.")
+                   description="Tasty and refreshing! Black tea made "
+                               "from real tea leaves.")
 session.add(item_to_add)
 session.commit()
 
