@@ -39,17 +39,24 @@ def showLogin():
 # Show items from a single category
 @app.route('/category/<int:category_id>')
 def show_category(category_id):
-    categories = session.query(Category).order_by(asc(Category.id))
-    items = session.query(Item).filter_by(category_id=category_id)
+    categories = session.query(Category).order_by(asc(Category.id)).all()
+    items = session.query(Item).filter_by(category_id=category_id).all()
     category_name = session.query(Category).filter_by(id=category_id)[0]
     return render_template('category.html', items=items, categories=categories, category_name=category_name)
+
+
+# Show information for a single item
+@app.route('/item/<int:item_id>')
+def show_item(item_id):
+    item = session.query(Item).filter_by(id=item_id)[0]
+    return render_template('item.html', item=item)
 
 
 # Show most recently added items
 @app.route('/')
 @app.route('/home/')
 def show_recent_items():
-    categories = session.query(Category).order_by(asc(Category.id))
+    categories = session.query(Category).order_by(asc(Category.id)).all()
     items = session.query(Item).order_by(desc(Item.id)).limit(12).all()
     return render_template('home.html', items=items, categories=categories)
 

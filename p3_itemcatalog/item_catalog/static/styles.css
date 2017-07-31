@@ -1,21 +1,28 @@
 /*
 Color scheme:
-
-#352D39 - onyx (dark purple)
-#6D435A - deep tuscan red (red purple)
-#384D48 - arsenic (dark green)
-#ACAD94 - silver
-#D8D4D5 - very light gray
+#170F11 - licorice
+#402039 - dark purple
+#F46036 - portland orange
+#A1A6B4 - silver
+#F3F9D2 - light goldenrod yellow
 */
 
 body {
-    background: #352D39 !important;
+    background: #A1A6B4 !important;
 }
 
 h1 {
-    color: #6D435A;
+    color: #402039;
 }
 
 a {
-    color: #ACAD94;
+    color: #F46036;
+}
+
+p {
+    color: black;
+}
+
+.container {
+    background: #F3F9D2;
 }

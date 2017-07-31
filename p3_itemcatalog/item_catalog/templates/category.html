@@ -1,40 +1,38 @@
 {% extends "main.html" %} {% block content %}
 
-<div class="container">
 
-    <div class='flash'>
-        {% with messages = get_flashed_messages() %} {% if messages %}
+<div class='flash'>
+    {% with messages = get_flashed_messages() %} {% if messages %}
 
-        <ul>
-            {% for message in messages %}
-            <li><strong> {{ message }} </strong></li>
-            {% endfor %}
-        </ul>
-        {% endif %} {% endwith %}
-    </div>
-
-
-    <div class="col-md-4">
-        <h1>Categories</h1>
-
-        {% for category in categories %}
-        <a href="/category/{{category.id}}">
-            <h3>{{category.name}}</h3>
-        </a>
+    <ul>
+        {% for message in messages %}
+        <li><strong> {{ message }} </strong></li>
         {% endfor %}
-    </div>
-
-
-    <div class="col-md-8">
-        <h1>{{category_name.name}} Items</h1>
-
-        {% for item in items %}
-        <a href="/item/{{item.id}}">
-            <h3>{{item.name}}</h3>
-        </a>
-        {% endfor %}
-    </div>
-
+    </ul>
+    {% endif %} {% endwith %}
 </div>
+
+
+<div class="col-md-4">
+    <h1>Categories</h1>
+
+    {% for category in categories %}
+    <a href="/category/{{category.id}}">
+        <h3>{{category.name}}</h3>
+    </a>
+    {% endfor %}
+</div>
+
+
+<div class="col-md-8">
+    <h1>{{category_name.name}} Items <i>({{items|length}} items)</i></h1>
+
+    {% for item in items %}
+    <a href="/item/{{item.id}}">
+        <h3>{{item.name}}</h3>
+    </a>
+    {% endfor %}
+</div>
+
 
 {% endblock %}
