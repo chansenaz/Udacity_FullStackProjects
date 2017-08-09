@@ -29,12 +29,12 @@ This program answers three questions about the news website's traffic:
 5. Once connected, 'cd /vagrant/logsanalysis'
 6. 'psql -d news -f newsdata.sql' to import the data into database 'news'
 7. 'psql news' to go into psql mode in the news database.
-8. Make view 1:
+8. Make view for querying viewcounts:
 	create view viewcount_view as
     select title, author, count(*) as num_views from articles, log
     where log.path = concat('/article/', articles.slug)
 	group by articles.title, articles.author order by num_views desc;
-9. Make view 2:
+9. Make view for querying errors:
 	create view errors_view as select date(time),
 	round(100.0 * sum(case log.status when '200 OK' then 0 else 1 end) /
 	count(log.status), 1) as percent_error from log group by date(time)
