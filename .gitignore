@@ -4,3 +4,4 @@
 **/.vagrant
 **/.idea
 p2_logsanalysis/vagrant/logsanalysis/newsdata.sql
+**/*secret*
